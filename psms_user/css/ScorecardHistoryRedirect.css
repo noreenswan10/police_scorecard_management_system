@@ -1,0 +1,286 @@
+/*  Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  /* background-color: whitesmoke; */
+}
+
+body {
+  background: #dfe9f5;
+}
+
+.container {
+  display: flex;
+}
+
+.container ul li {
+  list-style-type: none;
+}
+
+nav {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  background: #fff;
+  width: 280px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  text-align: center;
+  display: flex;
+  margin: 10px 0 0 10px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.logo span {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+a {
+  position: relative;
+  color: whitesmoke;
+  font-size: 14px;
+  display: table;
+  width: 280px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+a:hover {
+  background: #ff0000;
+}
+
+.sidebar {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  background: #2f343d;
+  width: 280px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 90px;
+}
+
+.sidebar .nav-item {
+  display: inline-flex;
+  transition: opacity 0.3s ease;
+}
+
+.logo{
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.logo .title{
+  font-size: 50px;
+}
+
+.sidebar:not(.collapsed) ul{
+  margin-top: 20px;
+}
+
+.sidebar.collapsed .nav-item {
+  opacity: 0;
+}
+
+/* .sidebar .logo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+} */
+
+.sidebar .fas {
+  width: 70px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn-toggle{
+  background-color:aliceblue;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-title{
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.header-title h2{
+  color: #2f343d;
+}
+
+#toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 20px;
+  font-size: 24px;
+}
+
+.sidebar ul li {
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar ul li a{
+  display: flex;
+  align-items: center;
+}
+
+.sidebar ul li i{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sidebar .logo{
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+/* Remove background on hover when not collapsed */
+.sidebar:not(.collapsed) ul li:hover a {
+  background: whitesmoke;
+  color:#2f343d;
+}
+
+/* Default hover background when collapsed */
+.sidebar.collapsed ul li:hover a {
+  background: whitesmoke;
+  color:#2f343d;
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: absolute;
+  left: 70px; /* Adjust based on your sidebar width */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.sidebar.collapsed ul.li:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar.collapsed .logo{
+  visibility: hidden;
+  margin-left: 114px;
+}
+
+.sidebar.collapsed .logo img{
+  visibility: visible;
+}
+
+.sidebar:not(.collapsed) ul li:hover .tooltip {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sidebar.collapsed .tooltip {
+  left: 70px; /* Adjust based on your collapsed sidebar width */
+}
+
+/* Main Section */
+
+.sec{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.scorecard{
+  margin-left: 100px;
+  margin-top: 30px;
+}
+
+.scorecard-header{
+  margin-top: 20px;
+}
+
+.scorecard-table{
+  display: flex;
+  flex-direction: column;
+}
+
+.scorecard-table table{
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 90%;
+  margin-top: 20px;
+}
+.scorecard-table th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+.scorecard-table th {
+    background-color: #2f343d;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.scorecard-table button{
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #1e4057;
+  color: whitesmoke;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-right: 175px;
+}
+
+.scorecard-table button:hover{
+  background-color: #173142;
+}
+
+.html {
+  color: rgb(25, 94, 54);
+}
+
+.css {
+  color: rgb(104, 179, 35);
+}
+
+.js {
+  color: rgb(28, 98, 179);
+}

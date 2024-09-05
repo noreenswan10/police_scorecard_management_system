@@ -1,0 +1,352 @@
+/*  Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  /* background-color: whitesmoke; */
+}
+
+body {
+  background: #dfe9f5;
+}
+
+.container {
+  display: flex;
+}
+
+.container ul li {
+  list-style-type: none;
+}
+
+nav {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  background: #fff;
+  width: 280px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  text-align: center;
+  display: flex;
+  margin: 10px 0 0 10px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.logo span {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+a {
+  position: relative;
+  color: whitesmoke;
+  font-size: 14px;
+  display: table;
+  width: 280px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+a:hover {
+  background: #ff0000;
+}
+
+.sidebar {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  background: #2f343d;
+  width: 280px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 90px;
+}
+
+.sidebar .nav-item {
+  display: inline-flex;
+  transition: opacity 0.3s ease;
+}
+
+.logo{
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.logo .title{
+  font-size: 50px;
+}
+
+.sidebar:not(.collapsed) ul{
+  margin-top: 20px;
+}
+
+.sidebar.collapsed .nav-item {
+  opacity: 0;
+}
+
+/* .sidebar .logo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+} */
+
+.sidebar .fas {
+  width: 70px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+}
+
+#toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 20px;
+  font-size: 24px;
+}
+
+.btn-toggle{
+  background-color:aliceblue;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-title{
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.header-title h2{
+  color: #2f343d;
+}
+
+.sidebar ul li {
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar ul li a{
+  display: flex;
+  align-items: center;
+}
+
+.sidebar ul li i{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sidebar .logo{
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+/* Remove background on hover when not collapsed */
+.sidebar:not(.collapsed) ul li:hover a {
+  background: whitesmoke;
+  color:#2f343d;
+}
+
+/* Default hover background when collapsed */
+.sidebar.collapsed ul li:hover a {
+  background: whitesmoke;
+  color:#2f343d;
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: absolute;
+  left: 70px; /* Adjust based on your sidebar width */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.sidebar.collapsed ul.li:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar.collapsed .logo{
+  visibility: hidden;
+  margin-left: 114px;
+}
+
+.sidebar.collapsed .logo img{
+  visibility: visible;
+}
+
+.sidebar:not(.collapsed) ul li:hover .tooltip {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sidebar.collapsed .tooltip {
+  left: 70px; /* Adjust based on your collapsed sidebar width */
+}
+
+/* Main Section */
+.main {
+  flex: 1;
+  display: flex;
+  margin-top: 60px;
+  justify-content: center;
+}
+
+.account{
+  margin-left: 50px;
+  background-color: aliceblue;
+  height: fit-content;
+  width: fit-content;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.account-inputs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.input-readonly{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.input-enter{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.account-inputs input{
+  padding: 10px;
+  border-radius: 10px;
+  border: #eeeef3 1px solid;
+}
+
+.read-only{
+  cursor: not-allowed;
+}
+
+.account-btn{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.account-btn button{
+  padding: 10px;
+  border-radius: 10px;
+  width: 150px;
+  cursor: pointer;
+}
+
+.btn-cancel{
+  background-color: #333;
+  color: whitesmoke;
+}
+
+.btn-save{
+  background-color:green;
+  color: whitesmoke;
+}
+
+.btn-save:hover{
+  background-color: rgb(1, 90, 1);
+}
+
+.btn-cancel:hover{
+  background-color: #222222;
+}
+
+.sec{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.profile-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.change-photo-label {
+  display: inline-block;
+  margin-top: 10px;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.change-photo-label:hover {
+  color: #222222;
+}
+
+.change-photo-label input {
+  display: none;
+}
+
+.html {
+  color: rgb(25, 94, 54);
+}
+
+.css {
+  color: rgb(104, 179, 35);
+}
+
+.js {
+  color: rgb(28, 98, 179);
+}

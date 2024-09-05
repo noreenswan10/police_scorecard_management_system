@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Individual Scorecard - PSMS</title>
+    <link rel="stylesheet" href="css/ScorecardHistoryRedirect.css">
+    <!-- Font Awesome Cdn Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar collapsed">
+            <div class="logo">
+                <img src="img/bppol-logo.png" alt="LOGO">
+                <span class="title">PSMS</span>
+            </div>
+            <ul>
+                <li><a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item">Home</span>
+                    <span class="tooltip">Home</span>
+                </a></li>
+                <li><a href="IndividualScorecard.html">
+                    <i class="fas fa-clipboard"></i>
+                    <span class="nav-item">Individual Scorecard</span>
+                    <span class="tooltip">Individual Scorecard</span>
+                </a></li>
+                <li><a href="HistoryScorecard.html">
+                    <i class="fas fa-history"></i>
+                    <span class="nav-item">History of Scorecard</span>
+                    <span class="tooltip">History of Scorecard</span>
+                </a></li>
+                <li><a href="AccountManagement.html">
+                    <i class="fas fa-users-cog"></i>
+                    <span class="nav-item">Account Management</span>
+                    <span class="tooltip">Account Management</span>
+                </a></li>
+                <li><a href="#" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Log out</span>
+                    <span class="tooltip">Log out</span>
+                </a></li>
+            </ul>
+        </nav>
+        <div class="sec">
+            <div class="btn-toggle">
+                <button id="toggle-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">
+                    <h2>BPPO-Police Scorecard Management System</h2>
+                </div>
+            </div>
+            <div class="scorecard">
+                <div class="scorecard-title">
+                    <h1>SCORECARD</h1>
+                </div>
+                <div class="scorecard-header" id="scorecard-header">
+                    <!-- Need data -->
+                </div>
+                <div class="scorecard-table">
+                    <table id="data-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">SUB-ACTIVITY<br>&lpar;Enabling Actions&rpar;</th>
+                                <th rowspan="2">Measures</th>
+                                <th rowspan="2">TARGETS</th>
+                                <th colspan="7">ACCOMPLISHMENT</th>
+                                <th rowspan="2">TOTAL</th>
+                                <th rowspan="2">COST</th>
+                                <th rowspan="2">REMARKS</th>
+                            </tr>
+                            <tr>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thurs</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                                <th>Sun</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Data rows will be inserted here -->
+                        </tbody>
+                    </table>
+                    <button onclick="window.location.href='HistoryScorecard.html';">Back to Scorecard History</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const index = urlParams.get('index');
+
+            if (index !== null) {
+                fetch('../data/ScorecardHistory.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const item = data.historys[index];
+                        const headerDiv = document.getElementById('scorecard-header');
+                        const tableBody = document.getElementById('table-body');
+
+                        // Populate header with data
+                        headerDiv.innerHTML = `
+                            <p>Rank/Name: <strong>${item.rank || 'N/A'}</strong></p>
+                            <p>Position: <strong>${item.position || 'N/A'}</strong></p>
+                            <p>Period Covered: <strong>${item.date}</strong></p>
+                        `;
+
+                        // Populate table rows with data
+                        let rows = '';
+                        const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                        item.activities.forEach(activity => {
+                            const dailyData = days.map(day => {
+                                const dayData = item[day][0];
+                                return `<td>${dayData ? dayData[day] : ''}</td>`;
+                            }).join('');
+
+                            rows += `
+                                <tr>
+                                    <td><strong>${activity.id}</strong> ${activity.description}</td>
+                                    <td>${activity.measure}</td>
+                                    <td>${activity.target}</td>
+                                    ${dailyData}
+                                    <td>${activity.total}</td>
+                                    <td>${activity.cost}</td>
+                                    <td>${activity.remarks}</td>
+                                </tr>
+                            `;
+                        });
+
+                        tableBody.innerHTML = rows;
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            } else {
+                document.getElementById('scorecard-header').innerHTML = 'No details available.';
+            }
+
+            // Toggle sidebar
+            document.getElementById('toggle-button').addEventListener('click', function () {
+                document.querySelector('.sidebar').classList.toggle('collapsed');
+            });
+        });
+    </script>
+</body>
+</html>
