@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>History of Scorecard - PSMS</title>
@@ -7,6 +8,7 @@
     <!-- Font Awesome Cdn Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <nav class="sidebar collapsed">
@@ -16,30 +18,30 @@
             </div>
             <ul>
                 <li><a href="index.html">
-                    <i class="fas fa-home"></i>
-                    <span class="nav-item">Home</span>
-                    <span class="tooltip">Home</span>
-                </a></li>
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                        <span class="tooltip">Home</span>
+                    </a></li>
                 <li><a href="IndividualScorecard.html">
-                    <i class="fas fa-clipboard"></i>
-                    <span class="nav-item">Individual Scorecard</span>
-                    <span class="tooltip">Individual Scorecard</span>
-                </a></li>
+                        <i class="fas fa-clipboard"></i>
+                        <span class="nav-item">Individual Scorecard</span>
+                        <span class="tooltip">Individual Scorecard</span>
+                    </a></li>
                 <li><a href="HistoryScorecard.html">
-                    <i class="fas fa-history"></i>
-                    <span class="nav-item">History of Scorecard</span>
-                    <span class="tooltip">History of Scorecard</span>
-                </a></li>
+                        <i class="fas fa-history"></i>
+                        <span class="nav-item">History of Scorecard</span>
+                        <span class="tooltip">History of Scorecard</span>
+                    </a></li>
                 <li><a href="AccountManagement.html">
-                    <i class="fas fa-users-cog"></i>
-                    <span class="nav-item">Account Management</span>
-                    <span class="tooltip">Account Management</span>
-                </a></li>
+                        <i class="fas fa-users-cog"></i>
+                        <span class="nav-item">Account Management</span>
+                        <span class="tooltip">Account Management</span>
+                    </a></li>
                 <li><a href="#" class="logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="nav-item">Log out</span>
-                    <span class="tooltip">Log out</span>
-                </a></li>
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                        <span class="tooltip">Log out</span>
+                    </a></li>
             </ul>
         </nav>
         <div class="sec">
@@ -58,7 +60,8 @@
                         <div class="search">
                             <div class="searchinput">
                                 <input type="text" id="search" placeholder="Search scorecard...">
-                                <button onclick="filterTable()">Search</button>
+                                <button onclick="searchHistory()">Search</button>
+                                <button onclick="clearSearch()">Clear</button>
                             </div>
                         </div>
                         <table id="historyTable">
@@ -81,7 +84,8 @@
                     <div class="history-promotion">
                         <h1>RECENT PROMOTIONS</h1>
                         <div class="divider">
-                            <img src="/assets/police-badge-police-svgrepo-com.svg" alt="Badge" width="50px" height="50px">
+                            <img src="assets/police-badge-police-svgrepo-com.svg" alt="Badge" width="50px"
+                                height="50px">
                         </div>
                         <div class="promotion-content" id="promotionItems">
                             <ul>
@@ -94,39 +98,21 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+
+        document.addEventListener('DOMContentLoaded', function () {
             loadHistory();
             loadData();
 
             document.getElementById('toggle-button').addEventListener('click', function () {
                 document.querySelector('.sidebar').classList.toggle('collapsed');
             });
+            document.querySelector('.search button').addEventListener('click', searchHistory);
         });
-
-        // Function to filter table based on year
-        function filterTable() {
-            const yearSelect = document.getElementById('yearSelect');
-            const selectedYear = yearSelect.value;
-            const table = document.getElementById('historyTable');
-            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-            for (let i = 0; i < rows.length; i++) {
-                const yearCell = rows[i].getElementsByTagName('td')[0];
-                const year = yearCell.textContent;
-                if (selectedYear === '' || year.includes(selectedYear)) {
-                    rows[i].style.display = '';
-                } else {
-                    rows[i].style.display = 'none';
-                }
-            }
-
-            updatePagination();
-        }
 
         // Function to load history data and populate the table
         async function loadHistory() {
             try {
-                const response = await fetch('../data/ScorecardHistory.json');
+                const response = await fetch('data/ScorecardHistory.json');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 const tableBody = document.querySelector('#historyTable tbody');
@@ -219,7 +205,7 @@
         // Function to load recent promotions data
         async function loadData() {
             try {
-                const response = await fetch('../data/RecentPromotion.json');
+                const response = await fetch('data/RecentPromotion.json');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
 
@@ -237,6 +223,38 @@
                 console.error('Error loading JSON data:', error);
             }
         }
+
+        // Function to search history
+        function searchHistory() {
+            const searchValue = document.getElementById('search').value.toLowerCase();
+            const tableBody = document.querySelector('#historyTable tbody');
+            const rows = tableBody.querySelectorAll('tr');
+
+            console.log(`Total rows: ${rows.length}`);
+
+            rows.forEach(row => {
+        const periodCovered = row.cells[0].textContent.toLowerCase().trim(); // Get text from the first cell
+        row.style.display = periodCovered.includes(searchValue) ? '' : 'none';
+    });
+
+            updatePaginationAfterSearch();
+        }
+
+        function updatePaginationAfterSearch() {
+            const tableBody = document.querySelector('#historyTable tbody');
+            const visibleRows = tableBody.querySelectorAll('tr[style="display: "]').length;
+            totalPages = Math.ceil(visibleRows / rowsPerPage);
+            currentPage = 1;
+            renderPagination();
+            updateTable();
+        }
+
+        function clearSearch() {
+            document.getElementById('search').value = '';
+            loadHistory(); 
+        }
+
     </script>
 </body>
+
 </html>

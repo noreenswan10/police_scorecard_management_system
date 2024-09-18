@@ -48,6 +48,33 @@
           "d": 3,
           "e": 1
         }
+      ],
+      "sat": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "sun": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "costs": [
+        {
+          "a": "MC Gasoline- PHP 400, Meal- PHP 400, Total= PHP 800",
+          "b": "Meal- PHP 400, Miscellaneous expenses- 300 Total= PHP 800",
+          "c": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "d": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "e": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680"
+        }
       ]
     },
     {
@@ -97,6 +124,33 @@
           "c": 1,
           "d": 3,
           "e": 1
+        }
+      ],
+      "sat": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "sun": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "costs": [
+        {
+          "a": "MC Gasoline- PHP 400, Meal- PHP 400, Total= PHP 800",
+          "b": "Meal- PHP 400, Miscellaneous expenses- 300 Total= PHP 800",
+          "c": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "d": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "e": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680"
         }
       ]
     },
@@ -148,6 +202,33 @@
           "d": 3,
           "e": 1
         }
+      ],
+      "sat": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "sun": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "costs": [
+        {
+          "a": "MC Gasoline- PHP 400, Meal- PHP 400, Total= PHP 800",
+          "b": "Meal- PHP 400, Miscellaneous expenses- 300 Total= PHP 800",
+          "c": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "d": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "e": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680"
+        }
       ]
     },
     {
@@ -197,6 +278,33 @@
           "c": 1,
           "d": 3,
           "e": 1
+        }
+      ],
+      "sat": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "sun": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "costs": [
+        {
+          "a": "MC Gasoline- PHP 400, Meal- PHP 400, Total= PHP 800",
+          "b": "Meal- PHP 400, Miscellaneous expenses- 300 Total= PHP 800",
+          "c": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "d": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "e": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680"
         }
       ]
     },
@@ -248,6 +356,33 @@
           "d": 3,
           "e": 1
         }
+      ],
+      "sat": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "sun": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "costs": [
+        {
+          "a": "MC Gasoline- PHP 400, Meal- PHP 400, Total= PHP 800",
+          "b": "Meal- PHP 400, Miscellaneous expenses- 300 Total= PHP 800",
+          "c": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "d": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "e": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680"
+        }
       ]
     },
     {
@@ -297,6 +432,33 @@
           "c": 1,
           "d": 3,
           "e": 1
+        }
+      ],
+      "sat": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 1
+        }
+      ],
+      "sun": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 1,
+          "d": 3,
+          "e": 0
+        }
+      ],
+      "costs": [
+        {
+          "a": "MC Gasoline- PHP 400, Meal- PHP 400, Total= PHP 800",
+          "b": "Meal- PHP 400, Miscellaneous expenses- 300 Total= PHP 800",
+          "c": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "d": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680",
+          "e": "Load- PHP 1500, Bondpapers- 180 Total= PHP 1680"
         }
       ]
     }

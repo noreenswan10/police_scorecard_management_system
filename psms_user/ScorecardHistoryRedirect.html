@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Individual Scorecard - PSMS</title>
@@ -7,6 +8,7 @@
     <!-- Font Awesome Cdn Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <nav class="sidebar collapsed">
@@ -16,30 +18,30 @@
             </div>
             <ul>
                 <li><a href="index.html">
-                    <i class="fas fa-home"></i>
-                    <span class="nav-item">Home</span>
-                    <span class="tooltip">Home</span>
-                </a></li>
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                        <span class="tooltip">Home</span>
+                    </a></li>
                 <li><a href="IndividualScorecard.html">
-                    <i class="fas fa-clipboard"></i>
-                    <span class="nav-item">Individual Scorecard</span>
-                    <span class="tooltip">Individual Scorecard</span>
-                </a></li>
+                        <i class="fas fa-clipboard"></i>
+                        <span class="nav-item">Individual Scorecard</span>
+                        <span class="tooltip">Individual Scorecard</span>
+                    </a></li>
                 <li><a href="HistoryScorecard.html">
-                    <i class="fas fa-history"></i>
-                    <span class="nav-item">History of Scorecard</span>
-                    <span class="tooltip">History of Scorecard</span>
-                </a></li>
+                        <i class="fas fa-history"></i>
+                        <span class="nav-item">History of Scorecard</span>
+                        <span class="tooltip">History of Scorecard</span>
+                    </a></li>
                 <li><a href="AccountManagement.html">
-                    <i class="fas fa-users-cog"></i>
-                    <span class="nav-item">Account Management</span>
-                    <span class="tooltip">Account Management</span>
-                </a></li>
+                        <i class="fas fa-users-cog"></i>
+                        <span class="nav-item">Account Management</span>
+                        <span class="tooltip">Account Management</span>
+                    </a></li>
                 <li><a href="#" class="logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="nav-item">Log out</span>
-                    <span class="tooltip">Log out</span>
-                </a></li>
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                        <span class="tooltip">Log out</span>
+                    </a></li>
             </ul>
         </nav>
         <div class="sec">
@@ -90,59 +92,93 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const index = urlParams.get('index');
+        document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const index = urlParams.get('index');
 
-            if (index !== null) {
-                fetch('../data/ScorecardHistory.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        const item = data.historys[index];
-                        const headerDiv = document.getElementById('scorecard-header');
-                        const tableBody = document.getElementById('table-body');
+    if (index !== null) {
+        fetch('data/ScorecardHistory.json')
+            .then(response => response.json())
+            .then(data => {
+                const item = data.historys[index];
+                const headerDiv = document.getElementById('scorecard-header');
+                const tableBody = document.getElementById('table-body');
 
-                        // Populate header with data
-                        headerDiv.innerHTML = `
-                            <p>Rank/Name: <strong>${item.rank || 'N/A'}</strong></p>
-                            <p>Position: <strong>${item.position || 'N/A'}</strong></p>
-                            <p>Period Covered: <strong>${item.date}</strong></p>
-                        `;
+                headerDiv.innerHTML = `
+                    <p>Rank/Name: <strong>${item.rank || 'N/A'}</strong></p>
+                    <p>Position: <strong>${item.position || 'N/A'}</strong></p>
+                    <p>Period Covered: <strong>${item.date}</strong></p>
+                `;
 
-                        // Populate table rows with data
-                        let rows = '';
-                        const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-                        item.activities.forEach(activity => {
-                            const dailyData = days.map(day => {
-                                const dayData = item[day][0];
-                                return `<td>${dayData ? dayData[day] : ''}</td>`;
-                            }).join('');
+                // List of days
+                const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-                            rows += `
-                                <tr>
-                                    <td><strong>${activity.id}</strong> ${activity.description}</td>
-                                    <td>${activity.measure}</td>
-                                    <td>${activity.target}</td>
-                                    ${dailyData}
-                                    <td>${activity.total}</td>
-                                    <td>${activity.cost}</td>
-                                    <td>${activity.remarks}</td>
-                                </tr>
-                            `;
-                        });
+                //Costs data
+                const cost = item.costs[0];
 
-                        tableBody.innerHTML = rows;
-                    })
-                    .catch(error => console.error('Error fetching data:', error));
-            } else {
-                document.getElementById('scorecard-header').innerHTML = 'No details available.';
-            }
+                // List of activities and their descriptions
+                const activities = {
+                    'a': 'a. Monitor and comply submission of report to higher headquarters',
+                    'b': 'b. Monitor and consolidation of initial incidents reports from all lower units/police station to Regional HQ5 and perform other operational duties as needed',
+                    'c': 'c. Monitored, received calls, text message and instruction from Higher Headquarters and disseminate to lower units concerned',
+                    'd': 'd. Perform other tasks as directed by the POMU Officer',
+                    'e': 'e. Perform other duties as directed by POMU'
+                };
 
-            // Toggle sidebar
-            document.getElementById('toggle-button').addEventListener('click', function () {
-                document.querySelector('.sidebar').classList.toggle('collapsed');
-            });
-        });
+                // Define phrases for Measures and Targets
+                const measures = {
+                    'a': 'No. of submitted report',
+                    'b': 'No. of submitted report',
+                    'c': 'No. of received calls and text',
+                    'd': 'No. of consolidated reports',
+                    'e': 'No. of performed duties'
+                };
+
+                const targets = {
+                    'a': '5',
+                    'b': '80',
+                    'c': '',
+                    'd': '100',
+                    'e': '5'
+                };
+
+                let rows = '';
+
+                Object.keys(activities).forEach(activityKey => {
+                    let total = 0;
+                    let dailyData = days.map(day => {
+                        const dayData = item[day] && item[day][0];
+                        const value = parseFloat(dayData ? dayData[activityKey] || 0 : 0);
+                        total += value;
+                        return `<td style="text-align: center;">${isNaN(value) ? '' : Math.round(value)}</td>`;
+                    }).join('');
+
+                    rows += `
+                        <tr>
+                            <td>${activities[activityKey]}</td> <!-- Activity description -->
+                            <td>${measures[activityKey] || 'N/A'}</td>
+                            <td style="text-align: center;">${targets[activityKey] || 'N/A'}</td>
+                            ${dailyData}
+                            <td style="text-align: center;">${Math.round(total)}</td>  <!-- Placeholder for TOTAL -->
+                            <td>${cost[activityKey] || 'N/A'}</td> <!-- Placeholder for COST -->
+                            <td style="text-align: center;">Weekly</td> <!-- Placeholder for REMARKS -->
+                        </tr>
+                    `;
+                });
+
+                tableBody.innerHTML = rows;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    } else {
+        document.getElementById('scorecard-header').innerHTML = 'No details available.';
+    }
+
+    // Toggle sidebar
+    document.getElementById('toggle-button').addEventListener('click', function () {
+        document.querySelector('.sidebar').classList.toggle('collapsed');
+    });
+});
     </script>
 </body>
+
 </html>
